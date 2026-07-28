@@ -47,9 +47,10 @@
 
 <p align="center">
 
-<!-- INSERIR FIGURA ESQUEMÁTICA DOS RESERVATÓRIOS AQUI -->
-
+  <img src="https://github.com/rodfloripa/Projeto89/blob/main/fig1.jpg">
 </p>
+
+
 
 <br>
 
