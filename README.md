@@ -231,11 +231,11 @@ P=
 \frac{\rho g QH}{\eta}
 $$
 
-<p align="justify">Para obter a potência em quilowatts:</p>
+<p align="justify">Para obter a potência em quilowatts:
+</p>
 
 $$
-P_{kW}
-=
+P_{kW}=
 \frac{\rho g QH}{\eta \cdot 1000}
 $$
 
@@ -262,8 +262,7 @@ $$
 onde:
 
 $$
-Custo_{total}
-=
+Custo_{total}=
 Custo_{CAPEX}
 +
 \sum_{h=1}^{24}
@@ -281,8 +280,7 @@ $$
 <p align="justify">O custo energético considera a potência utilizada em cada hora e a tarifa correspondente ao período.</p>
 
 $$
-Custo_{energia,h}
-=
+Custo_{energia,h}=
 P_{kW,h}
 \cdot
 Tarifa_h
@@ -297,8 +295,7 @@ $$
 <p align="justify">Cada bomba em operação possui um custo fixo diário associado à manutenção e disponibilidade operacional.</p>
 
 $$
-Custo_{bombas,h}
-=
+Custo_{bombas,h}=
 C_{fixo}
 \sum_i u_{h,i}
 $$
@@ -312,8 +309,7 @@ $$
 <p align="justify">O custo inicial da tubulação depende do comprimento instalado e do diâmetro escolhido.</p>
 
 $$
-CAPEX
-=
+CAPEX=
 L
 \cdot
 Custo_{m}(D)
@@ -322,8 +318,7 @@ $$
 <p align="justify">Como o objetivo é comparar custos diários de operação, o investimento é amortizado considerando uma vida útil de 20 anos.</p>
 
 $$
-Custo_{CAPEX,dia}
-=
+Custo_{CAPEX,dia}=
 \frac{CAPEX}
 {365 \cdot 20}
 $$
