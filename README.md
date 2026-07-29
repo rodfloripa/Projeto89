@@ -505,146 +505,35 @@ $$
 
 <p align="justify">A tabela abaixo apresenta o planejamento operacional determinado pelo algoritmo de otimização.</p>
 
-| Hora | Vazão (m³/s) | Bombas Ligadas | Tarifa (R$/kWh) | Potência (kW) | Custo Energia |
-|---|---|---|---|---|---|
-| 0 | | | | | |
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
-| 6 | | | | | |
-| 7 | | | | | |
-| 8 | | | | | |
-| 9 | | | | | |
-| 10 | | | | | |
-| 11 | | | | | |
-| 12 | | | | | |
-| 13 | | | | | |
-| 14 | | | | | |
-| 15 | | | | | |
-| 16 | | | | | |
-| 17 | | | | | |
-| 18 | | | | | |
-| 19 | | | | | |
-| 20 | | | | | |
-| 21 | | | | | |
-| 22 | | | | | |
-| 23 | | | | | |
+Perfil de Operação de 24 Horas:
+ Hora  Tarifa (R$/kWh)  Vazão (m³/s)  Bombas Ligadas  Potência (kW)  Altura Total (m)  Custo Energia (R$)
+    0              0.5         0.015               1           5.89              30.0                2.94
+    1              0.5         0.000               0           0.00              30.0                0.00
+    2              0.5         0.015               1           5.89              30.0                2.94
+    3              0.5         0.015               1           5.89              30.0                2.94
+    4              0.5         0.015               1           5.89              30.0                2.94
+    5              0.5         0.015               1           5.89              30.0                2.94
+    6              0.5         0.000               0           0.00              30.0                0.00
+    7              0.5         0.015               1           5.89              30.0                2.94
+    8              0.5         0.015               1           5.89              30.0                2.94
+    9              0.5         0.015               1           5.89              30.0                2.94
+   10              0.5         0.000               0           0.00              30.0                0.00
+   11              0.5         0.000               0           0.00              30.0                0.00
+   12              0.5         0.000               0           0.00              30.0                0.00
+   13              0.5         0.000               0           0.00              30.0                0.00
+   14              0.5         0.000               0           0.00              30.0                0.00
+   15              0.5         0.000               0           0.00              30.0                0.00
+   16              0.5         0.000               0           0.00              30.0                0.00
+   17              0.5         0.000               0           0.00              30.0                0.00
+   18              1.2         0.000               0           0.00              30.0                0.00
+   19              1.2         0.000               0           0.00              30.0                0.00
+   20              1.2         0.000               0           0.00              30.0                0.00
+   21              0.5         0.000               0           0.00              30.0                0.00
+   22              0.5         0.000               0           0.00              30.0                0.00
+   23              0.5         0.000               0           0.00              30.0                0.00
 
 ---
 
-# 16. Análise das Figuras
-
-<p align="justify">O modelo gera diferentes gráficos para avaliar o comportamento hidráulico e econômico do sistema.</p>
-
----
-
-# 16.1 Perfil da Tarifa Horária
-
-<p align="justify">O primeiro gráfico apresenta a variação do preço da energia elétrica ao longo do dia. Os períodos de maior tarifa representam os horários de ponta, nos quais o algoritmo tende a reduzir a operação quando possível.</p>
-
-<p align="center">
-
-<!-- INSERIR FIGURA DA TARIFA HORÁRIA AQUI -->
-
-</p>
-
-<p align="justify">Conclusão da figura:</p>
-
-<p align="justify">
-
-<!-- INSERIR A CONCLUSÃO DA FIGURA DA TARIFA HORÁRIA -->
-
-</p>
-
----
-
-# 16.2 Vazão Bombeada por Hora
-
-<p align="justify">O gráfico de vazão apresenta a estratégia encontrada pelo modelo para distribuir o bombeamento ao longo das 24 horas.</p>
-
-<p align="justify">A solução pode concentrar o bombeamento em períodos de menor tarifa, desde que a capacidade das bombas e a demanda diária sejam respeitadas.</p>
-
-<p align="center">
-
-<!-- INSERIR FIGURA DA VAZÃO HORÁRIA AQUI -->
-
-</p>
-
-<p align="justify">Conclusão da figura:</p>
-
-<p align="justify">
-
-<!-- INSERIR A CONCLUSÃO DA FIGURA DA VAZÃO -->
-
-</p>
-
----
-
-# 16.3 Número de Bombas em Operação
-
-<p align="justify">A quantidade de bombas ligadas em cada período mostra a estratégia operacional escolhida pelo algoritmo.</p>
-
-<p align="justify">Em horários de menor custo energético, o modelo pode aumentar a utilização das bombas para deslocar o consumo para períodos economicamente mais favoráveis.</p>
-
-<p align="center">
-
-<!-- INSERIR FIGURA DAS BOMBAS LIGADAS AQUI -->
-
-</p>
-
-<p align="justify">Conclusão da figura:</p>
-
-<p align="justify">
-
-<!-- INSERIR A CONCLUSÃO DA FIGURA DAS BOMBAS -->
-
-</p>
-
----
-
-# 16.4 Potência Requerida
-
-<p align="justify">O gráfico de potência apresenta a energia instantânea necessária para manter o sistema funcionando em cada horário.</p>
-
-<p align="justify">A potência depende diretamente da vazão e da altura manométrica, sendo influenciada pelo diâmetro escolhido.</p>
-
-<p align="center">
-
-<!-- INSERIR FIGURA DA POTÊNCIA DA BOMBA AQUI -->
-
-</p>
-
-<p align="justify">Conclusão da figura:</p>
-
-<p align="justify">
-
-<!-- INSERIR A CONCLUSÃO DA FIGURA DA POTÊNCIA -->
-
-</p>
-
----
-
-# 16.5 Composição do Custo Total
-
-<p align="justify">O custo final do sistema é formado pela soma do consumo energético, operação das bombas e investimento amortizado da tubulação.</p>
-
-<p align="center">
-
-<!-- INSERIR FIGURA DA COMPOSIÇÃO DOS CUSTOS AQUI -->
-
-</p>
-
-<p align="justify">Conclusão da figura:</p>
-
-<p align="justify">
-
-<!-- INSERIR A CONCLUSÃO DA FIGURA DOS CUSTOS -->
-
-</p>
-
----
 
 
 ---
@@ -673,10 +562,11 @@ $$
 
 ---
 
-# 17. Espaço para Figura
+# 17. Gráficos
 
 <p align="center">
+  <img src="https://github.com/rodfloripa/Projeto89/blob/main/fig2.png">
+</p>
 
-<!-- INSERIR GRÁFICO FINAL AQUI -->
 
 </p>
