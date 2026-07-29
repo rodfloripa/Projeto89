@@ -505,7 +505,7 @@ $$
 
 <p align="justify">A tabela abaixo apresenta o planejamento operacional determinado pelo algoritmo de otimização.</p>
 
-# Perfil de Operação de 24 Horas
+## Perfil de Operação de 24 Horas
 
 | Hora | Tarifa (R$/kWh) | Vazão (m³/s) | Bombas Ligadas | Potência (kW) | Altura Total (m) | Custo Energia (R$) |
 |---:|---:|---:|---:|---:|---:|---:|
