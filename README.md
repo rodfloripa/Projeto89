@@ -54,7 +54,7 @@
 
 <br>
 
-<p align="justify">A figura deve apresentar os seguintes elementos:</p>
+<p align="justify">A figura apresenta os seguintes elementos:</p>
 
 <p align="justify">- reservatório inferior;</p>
 
