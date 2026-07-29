@@ -646,183 +646,37 @@ $$
 
 ---
 
-# 17. Comparação entre Estratégias Possíveis
-
-<p align="justify">Uma das vantagens do modelo de otimização é permitir comparar diferentes estratégias de projeto e operação.</p>
-
-| Estratégia | Característica | Vantagem | Desvantagem |
-|---|---|---|---|
-| Tubulação pequena | Baixo investimento inicial | Menor CAPEX | Maior consumo energético |
-| Tubulação grande | Alto investimento inicial | Menor perda de carga | Maior custo inicial |
-| Tubulação intermediária | Equilíbrio econômico | Menor custo total | Depende do perfil operacional |
-
-<p align="justify">A solução ótima não necessariamente corresponde ao menor investimento inicial ou ao menor consumo isoladamente. Ela representa a combinação que minimiza o custo acumulado considerando todo o ciclo de operação.</p>
 
 ---
 
-# 18. Espaço para Figura Geral do Sistema Otimizado
+# 16. Robustez Numérica e Formulação DCP
 
-<p align="justify">A figura abaixo deve apresentar uma visão geral da solução encontrada, incluindo reservatórios, tubulação selecionada, bombas utilizadas e estratégia de operação.</p>
+<p align="justify">A implementação foi estruturada para obedecer às regras de Disciplined Convex Programming (DCP) do CVXPY. Embora o problema seja uma Programação Inteira Mista (MILP), toda a não linearidade hidráulica é pré-calculada antes da otimização. As perdas de carga, alturas manométricas e potências são calculadas para cada combinação de diâmetro e número de bombas, sendo armazenadas em matrizes constantes. Durante a otimização, o modelo manipula apenas constantes multiplicadas por variáveis binárias, preservando a linearidade da função objetivo e das restrições.</p>
+
+<p align="justify">Essa estratégia evita produtos entre variáveis de decisão, divisões por variáveis e expressões quadráticas dentro do modelo de otimização, permitindo que o problema seja reconhecido como compatível com as regras DCP.</p>
+
+<p align="justify">Outra medida importante consiste em representar as escolhas de engenharia por variáveis binárias e utilizar restrições de consistência para ativar apenas os parâmetros correspondentes ao diâmetro selecionado. Dessa forma, toda a lógica combinatória permanece linear.</p>
+
+## 16.1 Como Evitar Soluções "optimal_inaccurate"
+
+<p align="justify">Problemas classificados como <code>optimal_inaccurate</code> normalmente estão associados à tolerância numérica do solver e não necessariamente indicam que a solução seja inviável. Algumas práticas adotadas para reduzir esse comportamento são:</p>
+
+<p align="justify">- pré-calcular todos os parâmetros hidráulicos antes da otimização;</p>
+<p align="justify">- evitar coeficientes com escalas muito diferentes por meio de normalização quando necessário;</p>
+<p align="justify">- utilizar apenas constantes nas expressões da função objetivo e das restrições;</p>
+<p align="justify">- evitar produtos entre variáveis contínuas e binárias;</p>
+<p align="justify">- preferir solvers MILP mais robustos, como CBC, HiGHS, SCIP ou GUROBI, quando disponíveis;</p>
+<p align="justify">- verificar a condição <code>problema.is_dcp()</code> antes da resolução;</p>
+<p align="justify">- analisar o status retornado pelo solver e, quando necessário, ajustar as tolerâncias numéricas.</p>
+
+<p align="justify">Com essa formulação, o modelo permanece linear, atende às regras DCP do CVXPY e reduz significativamente a ocorrência de problemas de estabilidade numérica durante a otimização.</p>
+
+---
+
+# 17. Espaço para Figura
 
 <p align="center">
 
-<!-- INSERIR FIGURA FINAL DO SISTEMA OTIMIZADO AQUI -->
+<!-- INSERIR GRÁFICO FINAL AQUI -->
 
 </p>
-
-# 19. Conclusão
-
-<p align="justify">Este projeto apresentou uma abordagem de otimização aplicada a sistemas de bombeamento considerando simultaneamente aspectos hidráulicos, econômicos e operacionais. O modelo desenvolvido permite determinar não apenas a vazão ideal de operação, mas também a melhor combinação entre diâmetro da tubulação, quantidade de bombas utilizadas e período de funcionamento.</p>
-
-<p align="justify">A principal contribuição do modelo está na integração entre decisões contínuas e discretas. Enquanto a vazão representa uma variável física que pode assumir diferentes valores, escolhas como o diâmetro comercial da tubulação e o estado de funcionamento das bombas são decisões discretas que representam situações reais de engenharia.</p>
-
-<p align="justify">A inclusão da tarifa horária de energia adiciona uma característica importante ao problema, pois permite que o algoritmo encontre estratégias de deslocamento do consumo para períodos de menor custo. Dessa forma, o sistema não busca apenas reduzir a potência instantânea, mas sim minimizar o custo acumulado ao longo do dia.</p>
-
-<p align="justify">O modelo também demonstra o conflito existente entre investimento inicial e custo operacional. Tubulações menores apresentam menor custo de implantação, porém aumentam a perda de carga e consequentemente o consumo energético. Tubulações maiores reduzem o gasto energético, mas exigem maior investimento inicial. A solução ótima representa o equilíbrio econômico entre essas duas alternativas.</p>
-
-<p align="justify">A utilização de programação inteira mista permite representar essas decisões de forma mais próxima da realidade industrial, fornecendo uma ferramenta capaz de auxiliar projetos de sistemas de bombeamento mais eficientes e economicamente sustentáveis.</p>
-
----
-
-# 20. Principais Resultados Esperados
-
-<p align="justify">A aplicação do modelo permite obter os seguintes resultados:</p>
-
-<p align="justify">- seleção automática do diâmetro comercial economicamente mais adequado;</p>
-
-<p align="justify">- definição do melhor horário de funcionamento das bombas;</p>
-
-<p align="justify">- redução do custo energético através do aproveitamento das tarifas mais baixas;</p>
-
-<p align="justify">- avaliação do impacto do investimento da tubulação no custo total;</p>
-
-<p align="justify">- identificação da configuração de menor custo dentro das alternativas avaliadas.</p>
-
----
-
-# 21. Limitações do Modelo
-
-<p align="justify">Apesar de representar um sistema realista, algumas simplificações foram adotadas para permitir a formulação matemática do problema.</p>
-
-<p align="justify">A perda de carga foi representada por uma aproximação do tipo:</p>
-
-$$
-h_f=K(D)Q^2
-$$
-
-<p align="justify">Em sistemas reais, poderiam ser utilizados modelos hidráulicos mais completos baseados em equações como Darcy-Weisbach ou Hazen-Williams considerando propriedades detalhadas do fluido e da tubulação.</p>
-
-<p align="justify">Além disso, a eficiência da bomba foi considerada constante. Em aplicações reais, a eficiência varia conforme o ponto de operação da curva da bomba.</p>
-
-<p align="justify">Outro ponto é que o modelo considera uma demanda diária fixa. Sistemas reais podem apresentar variações sazonais, incerteza de consumo e restrições adicionais relacionadas ao armazenamento dos reservatórios.</p>
-
----
-
-# 22. Melhorias Futuras
-
-<p align="justify">Como evolução do projeto, podem ser adicionadas novas características para aproximar ainda mais o modelo de aplicações industriais.</p>
-
-<p align="justify">Possíveis melhorias:</p>
-
-<p align="justify">- utilização das curvas reais das bombas;</p>
-
-<p align="justify">- inclusão de múltiplos reservatórios;</p>
-
-<p align="justify">- consideração de incerteza na demanda;</p>
-
-<p align="justify">- otimização multiobjetivo entre custo e confiabilidade;</p>
-
-<p align="justify">- utilização de algoritmos genéticos ou métodos híbridos para problemas de maior escala;</p>
-
-<p align="justify">- integração com sistemas de monitoramento em tempo real;</p>
-
-<p align="justify">- inclusão de manutenção preventiva das bombas;</p>
-
-<p align="justify">- aplicação de aprendizado de máquina para previsão de demanda.</p>
-
----
-
-# 23. Interpretação Física da Solução
-
-<p align="justify">A solução encontrada pelo algoritmo não representa apenas um valor matemático mínimo, mas uma estratégia operacional fisicamente coerente.</p>
-
-<p align="justify">Quando o modelo escolhe um determinado diâmetro, ele está avaliando o impacto desse investimento durante toda a vida útil do sistema. Quando decide ligar ou desligar bombas, está comparando o custo de energia, a necessidade de atendimento da demanda e as limitações dos equipamentos.</p>
-
-<p align="justify">Portanto, a otimização obtida representa uma decisão de engenharia baseada no equilíbrio entre eficiência hidráulica, economia operacional e viabilidade financeira.</p>
-
----
-
-# 24. Estrutura Final do Projeto
-
-<p align="justify">A organização final dos arquivos do projeto é:</p>
-
-
-```
-
-otimizacao_bombeamento/
-
-│
-├── otimizacao_bombeamento.py
-│
-├── README.md
-│
-├── requirements.txt
-│
-├── imagens/
-│   │
-│   ├── sistema_reservatorios.png
-│   ├── tarifa_horaria.png
-│   ├── vazao_horaria.png
-│   ├── bombas_operacao.png
-│   ├── potencia_bomba.png
-│   └── composicao_custos.png
-│
-└── resultados/
-│
-└── tabela_operacao.csv
-
-```
-
----
-
-# 25. Referências
-
-<p align="justify">A modelagem hidráulica e de otimização foi baseada em conceitos de engenharia de sistemas de bombeamento, mecânica dos fluidos e programação matemática.</p>
-
-<p align="justify">Referências utilizadas:</p>
-
-<p align="justify">- CHAPRA, S. C.; CANALE, R. P. Métodos Numéricos para Engenharia.</p>
-
-<p align="justify">- ÇENGEL, Y. A.; CIMBALA, J. M. Mecânica dos Fluidos: Fundamentos e Aplicações.</p>
-
-<p align="justify">- BAZARAA, M. S.; JARVIS, J. J.; SHERALI, H. D. Linear Programming and Network Flows.</p>
-
-<p align="justify">- Documentação oficial da biblioteca CVXPY.</p>
-
----
-
-# 26. Observações Finais
-
-<p align="justify">Este projeto demonstra como técnicas modernas de otimização podem ser aplicadas em problemas clássicos de engenharia, transformando decisões tradicionalmente baseadas apenas em experiência prática em decisões quantitativas apoiadas por modelos matemáticos.</p>
-
-<p align="justify">A combinação entre modelagem hidráulica, programação inteira mista e análise econômica permite desenvolver sistemas de bombeamento mais eficientes, reduzindo custos operacionais e melhorando o planejamento de infraestrutura.</p>
-
-<br>
-
-<p align="center">
-
-<!-- INSERIR FIGURA FINAL DO PROJETO AQUI -->
-
-</p>
-
-<br>
-
-<p align="justify">Conclusão final da figura:</p>
-
-<p align="justify">
-
-<!-- INSERIR CONCLUSÃO DA FIGURA FINAL -->
-
-</p>
-
-```
