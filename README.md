@@ -538,9 +538,9 @@ $$
 
 ### Resumo do Período
 - **Horas de Operação:** 8 horas
-- **Consumo Total de Energia:** 47,12 kWh
-- **Volume Total Bombeado:** 432 m³
-- **Custo Total Diário:** R$ 23,52
+- **Consumo Total de Energia:** 47,12 kWh (8 h × 5,89 kW)
+- **Volume Total Bombeado:** 432 m³ (8 h × 0,015 m³/s × 3600 s)
+- **Custo Total Diário:** R$ 23,56 (8 h × R$ 2,9445/h)
 
 
 
