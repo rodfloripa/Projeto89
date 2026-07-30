@@ -575,7 +575,7 @@ $$
 # 17. Gráficos
 
 <p align="center">
-  <img src="https://github.com/rodfloripa/Projeto89/blob/main/fig2.png">
+  <img src="https://github.com/rodfloripa/Projeto89/blob/main/fig2a.png">
 </p>
 
 
