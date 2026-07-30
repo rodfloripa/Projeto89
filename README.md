@@ -19,7 +19,7 @@
 
 <p align="justify">Portanto, existe um conflito entre investimento inicial, custo energético e estratégia operacional. A solução ótima representa o melhor compromisso econômico entre essas variáveis.</p>
 
----
+
 
 # 2. Objetivo do Projeto
 
@@ -35,7 +35,7 @@
 
 <p align="justify">- minimização do custo total composto por energia, operação das bombas e investimento em infraestrutura.</p>
 
----
+
 
 # 3. Representação do Sistema
 
@@ -68,7 +68,7 @@
 
 <p align="justify">- vazão bombeada $Q$.</p>
 
----
+
 
 # 4. Variáveis de Decisão
 
@@ -86,7 +86,7 @@ $$
 
 <p align="justify">A variável $Q_h$ determina quanto volume de água será transportado em cada intervalo de operação.</p>
 
----
+
 
 ## 4.2 Estado das Bombas
 
@@ -106,7 +106,7 @@ $$
 
 <p align="justify">Essa variável permite que o algoritmo escolha automaticamente a quantidade de bombas necessárias em cada período.</p>
 
----
+
 
 ## 4.3 Seleção do Diâmetro
 
@@ -126,7 +126,7 @@ $$
 \sum_j z_j = 1
 $$
 
----
+
 
 # 5. Dados do Sistema
 
@@ -144,7 +144,7 @@ $$
 | Vazão mínima por bomba | 0,005 m³/s |
 | Vazão máxima por bomba | 0,020 m³/s |
 
----
+
 
 # 6. Diâmetros Comerciais Avaliados
 
@@ -159,7 +159,7 @@ $$
 
 <p align="justify">O diâmetro escolhido influencia diretamente o comportamento hidráulico do sistema, pois tubulações maiores reduzem a perda de carga, porém apresentam maior custo de implantação.</p>
 
----
+
 
 # 7. Tarifação Horária de Energia
 
@@ -183,7 +183,7 @@ $$
 
 <p align="justify">O comportamento hidráulico do sistema é determinado pela relação entre vazão, perda de carga e altura total que a bomba precisa fornecer. A energia necessária para transportar a água depende tanto da diferença de nível entre os reservatórios quanto das perdas provocadas pelo escoamento na tubulação.</p>
 
----
+
 
 # 8.1 Perda de Carga na Tubulação
 
@@ -203,7 +203,7 @@ $$
 
 <p align="justify">Dessa forma, quando o diâmetro aumenta, a resistência ao escoamento diminui e consequentemente a energia necessária para o bombeamento também reduz.</p>
 
----
+
 
 # 8.2 Altura Total Manométrica
 
@@ -221,7 +221,7 @@ $$
 
 <p align="justify">A altura geométrica permanece constante, pois depende da diferença física entre os reservatórios. Entretanto, a parcela referente às perdas hidráulicas aumenta com a vazão.</p>
 
----
+
 
 # 8.3 Potência da Bomba
 
@@ -242,7 +242,7 @@ $$
 
 <p align="justify">Como a altura depende da vazão, a potência possui comportamento não linear. Vazões elevadas podem provocar aumento significativo do consumo devido ao crescimento da perda de carga.</p>
 
----
+
 
 # 9. Formulação da Função Objetivo
 
@@ -274,7 +274,7 @@ Custo_{bombas,h}
 )
 $$
 
----
+
 
 # 9.1 Custo de Energia
 
@@ -289,7 +289,7 @@ $$
 
 <p align="justify">A tarifa variável cria um incentivo para que o algoritmo evite operar durante horários de energia mais cara.</p>
 
----
+
 
 # 9.2 Custo das Bombas
 
@@ -303,7 +303,7 @@ $$
 
 <p align="justify">A variável binária define automaticamente quantas bombas devem permanecer ligadas em cada horário.</p>
 
----
+
 
 # 9.3 Custo de Investimento da Tubulação
 
@@ -324,13 +324,13 @@ Custo_{CAPEX,dia}=
 {365 \cdot 20}
 $$
 
----
+
 
 # 10. Restrições do Modelo
 
 <p align="justify">Além de minimizar o custo, o algoritmo deve respeitar as limitações físicas e operacionais do sistema.</p>
 
----
+
 
 # 10.1 Escolha Única do Diâmetro
 
@@ -342,7 +342,7 @@ $$
 
 <p align="justify">Essa restrição representa uma decisão discreta de engenharia.</p>
 
----
+
 
 # 10.2 Atendimento da Demanda
 
@@ -359,7 +359,7 @@ $$
 
 <p align="justify">O fator 3600 converte horas para segundos, permitindo utilizar a vazão em metros cúbicos por segundo.</p>
 
----
+
 
 # 10.3 Limite de Operação das Bombas
 
@@ -377,7 +377,7 @@ $$
 
 <p align="justify">Essa restrição impede que o modelo utilize vazões incompatíveis com a quantidade de bombas selecionada.</p>
 
----
+
 
 # 10.4 Funcionamento Mínimo
 
@@ -387,7 +387,7 @@ $$
 \sum_i u_{h,i}\geq1
 $$
 
----
+
 
 # 11. Natureza Combinatória do Problema
 
@@ -397,7 +397,7 @@ $$
 
 <p align="justify">Essa combinação produz uma superfície de custo com diferentes regiões possíveis, criando vários mínimos locais associados às diferentes combinações de operação.</p>
 
----
+
 
 # 12. Existência de Múltiplos Mínimos
 
@@ -413,7 +413,7 @@ $$
 
 <p align="justify">O algoritmo busca a combinação que apresenta o menor custo total, identificando o mínimo global dentro do conjunto de soluções possíveis.</p>
 
----
+
 
 # 13. Método Computacional
 
@@ -439,7 +439,7 @@ $$
 
 <p align="justify">O modelo considera um horizonte de planejamento de 24 horas, no qual o algoritmo decide automaticamente a programação das bombas, a vazão em cada período e o diâmetro comercial mais adequado para a tubulação.</p>
 
----
+
 
 # 14.1 Bibliotecas Utilizadas
 
@@ -453,7 +453,7 @@ $$
 
 <p align="justify">- Matplotlib: geração das visualizações gráficas.</p>
 
----
+
 
 # 14.2 Estrutura do Modelo Computacional
 
@@ -473,7 +473,7 @@ $$
 
 <p align="justify">7. Geração das análises gráficas.</p>
 
----
+
 
 # 15. Resultados Obtidos
 
@@ -499,7 +499,7 @@ $$
 
 <p align="justify">- altura manométrica do sistema.</p>
 
----
+
 
 # 15.1 Tabela de Operação Horária
 
@@ -546,7 +546,7 @@ $$
 
 
 
----
+
 
 # 16. Robustez Numérica e Formulação DCP
 
@@ -570,7 +570,7 @@ $$
 
 <p align="justify">Com essa formulação, o modelo permanece linear, atende às regras DCP do CVXPY e reduz significativamente a ocorrência de problemas de estabilidade numérica durante a otimização.</p>
 
----
+
 
 # 17. Gráficos
 
