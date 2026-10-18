@@ -1,5 +1,5 @@
 
-# Otimização Inteligente de Sistema de Bombeamento com Programação Inteira Mista
+# Projeto89: Otimização Inteligente de Sistema de Bombeamento com Programação Inteira Mista
 
 <p align="justify">Este projeto apresenta a otimização de um sistema de bombeamento de água considerando simultaneamente decisões hidráulicas, operacionais e econômicas. O problema consiste em determinar a melhor estratégia de operação de uma estação elevatória, buscando minimizar o custo diário total enquanto são respeitadas as restrições de demanda, capacidade das bombas, disponibilidade de equipamentos e características da tubulação.</p>
 
